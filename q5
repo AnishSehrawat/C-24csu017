@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+int main(){
+    int size;
+    cout<<"Enter the size of the square matrix: ";
+    cin>>size;
+    int mat[size][size];
+    cout<<endl<<"Input the elements of the "<<size<<"X"<<size<<" matrix:\n";
+    for(int row=0;row<size;row++){
+        for(int col=0;col<size;col++){
+            cin>>mat[row][col];
+        }
+    }
+    for(int row=0;row<size;row++){
+        for(int col=row;col<size;col++){
+            int temp=mat[row][col];
+            mat[row][col]=mat[col][row];
+            mat[col][row]=temp;
+        }
+    }
+    for(int row=0;row<size;row++){
+        int left=0;
+        int right=size-1;
+        while(left<right){
+            int temp=mat[row][right];
+            mat[row][right]=mat[row][left];
+            mat[row][left]=temp;
+            left++;
+            right--;
+        }
+    }
+    cout<<endl<<"Matrix after a 90 degree clockwise rotation:\n";
+    for(int row=0;row<size;row++){
+        for(int col=0;col<size;col++){
+            cout<<mat[row][col]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
